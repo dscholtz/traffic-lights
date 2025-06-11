@@ -76,18 +76,6 @@ The `pkg/fsm` package contains the core logic for the FSM, including state defin
 
 ---
 
-## Customization
-
-You can modify the duration of each state by editing the constants in the `pkg/fsm/fsm.go` file:
-
-```go
-const (
-    redDuration    = 5 * time.Second
-    greenDuration  = 5 * time.Second
-    yellowDuration = 2 * time.Second
-)
-```
-
 Adjust these values to simulate different traffic scenarios.
 
 ---
