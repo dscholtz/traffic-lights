@@ -13,10 +13,10 @@ type event struct {
 	payload any // Payload to carry context such as elapsed time or something
 }
 
-func newTimerEvent() event {
+func NewTimerEvent() event {
 	return event{Type: timerElapsed}
 }
 
-func newEmergencyEvent(reason string) event {
+func NewEmergencyEvent(reason string) event {
 	return event{Type: emergency, payload: reason}
 }
