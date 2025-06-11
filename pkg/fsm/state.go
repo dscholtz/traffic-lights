@@ -4,14 +4,6 @@ import "fmt"
 
 type stateFn func(event event) stateFn
 
-type stateName string
-
-const (
-	redStateName    stateName = "RED"
-	greenStateName  stateName = "GREEN"
-	yellowStateName stateName = "YELLOW"
-)
-
 func redState(event event) stateFn {
 	switch event.Type {
 	case timerElapsed:
