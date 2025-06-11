@@ -12,7 +12,7 @@ type FSM struct {
 }
 
 // Constructor
-func NewFSM() *FSM {
+func New() *FSM {
 	return &FSM{
 		currentState: redState,
 		eventChan:    make(chan event, 10), // buffered for responsiveness

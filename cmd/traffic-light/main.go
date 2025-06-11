@@ -14,7 +14,7 @@ func main() {
 	defer cancel()
 
 	// Initialize the FSM with the initial state (Red)
-	machine := fsm.NewFSM()
+	machine := fsm.New()
 
 	// Start the FSM loop
 	go machine.Run(ctx)
