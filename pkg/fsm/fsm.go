@@ -7,7 +7,7 @@ import (
 
 type FSM struct {
 	currentState stateFn
-	eventChan    chan event
+	eventChan    chan Event
 	doneChan     chan struct{}
 }
 
@@ -15,13 +15,13 @@ type FSM struct {
 func New() *FSM {
 	return &FSM{
 		currentState: redState,
-		eventChan:    make(chan event, 10), // buffered for responsiveness
+		eventChan:    make(chan Event, 10), // buffered for responsiveness
 		doneChan:     make(chan struct{}),
 	}
 }
 
 // Event sender — thread-safe and controlled
-func (f *FSM) Send(event event) error {
+func (f *FSM) Send(event Event) error {
 	select {
 	case f.eventChan <- event:
 		return nil

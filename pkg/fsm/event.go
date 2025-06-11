@@ -8,15 +8,15 @@ const (
 	powerOutage  eventType = "POWER_OUTAGE"
 )
 
-type event struct {
+type Event struct {
 	Type    eventType
 	payload any // Payload to carry context such as elapsed time or something
 }
 
-func NewTimerEvent() event {
-	return event{Type: timerElapsed}
+func NewTimerEvent() Event {
+	return Event{Type: timerElapsed}
 }
 
-func NewEmergencyEvent(reason string) event {
-	return event{Type: emergency, payload: reason}
+func NewEmergencyEvent(reason string) Event {
+	return Event{Type: emergency, payload: reason}
 }

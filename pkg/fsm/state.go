@@ -2,9 +2,9 @@ package fsm
 
 import "fmt"
 
-type stateFn func(event event) stateFn
+type stateFn func(event Event) stateFn
 
-func redState(event event) stateFn {
+func redState(event Event) stateFn {
 	switch event.Type {
 	case timerElapsed:
 		fmt.Println("Red -> Green")
@@ -21,7 +21,7 @@ func redState(event event) stateFn {
 	}
 }
 
-func greenState(event event) stateFn {
+func greenState(event Event) stateFn {
 	switch event.Type {
 	case timerElapsed:
 		fmt.Println("Green -> Yellow")
@@ -38,7 +38,7 @@ func greenState(event event) stateFn {
 	}
 }
 
-func yellowState(event event) stateFn {
+func yellowState(event Event) stateFn {
 	switch event.Type {
 	case timerElapsed:
 		fmt.Println("Yellow -> Red")
