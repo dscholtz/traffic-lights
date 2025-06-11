@@ -2,55 +2,24 @@ package fsm
 
 import "fmt"
 
-type stateFn func(event Event) stateFn
+type state int
 
-func redState(event Event) stateFn {
-	switch event.Type {
-	case timerElapsed:
-		fmt.Println("Red -> Green")
-		return greenState
-	case emergency:
-		fmt.Println("Already in red; stay on red due to emergency")
-		return redState
-	case powerOutage:
-		fmt.Println("Power outage")
-		return nil
-	default:
-		fmt.Printf("redState: Unhandled event: %v\n", event.Type)
-		return redState
-	}
+const (
+	red state = iota
+	yellow
+	green
+)
+
+type action func(Event)
+
+func redState(e Event) {
+	fmt.Println("Red -> Green")
 }
 
-func greenState(event Event) stateFn {
-	switch event.Type {
-	case timerElapsed:
-		fmt.Println("Green -> Yellow")
-		return yellowState
-	case emergency:
-		fmt.Println("Emergency! Green -> Red")
-		return redState
-	case powerOutage:
-		fmt.Println("Power outage")
-		return nil
-	default:
-		fmt.Printf("greenState: Unhandled event: %v\n", event.Type)
-		return greenState
-	}
+func greenState(e Event) {
+	fmt.Println("Green -> Yellow")
 }
 
-func yellowState(event Event) stateFn {
-	switch event.Type {
-	case timerElapsed:
-		fmt.Println("Yellow -> Red")
-		return greenState
-	case emergency:
-		fmt.Println("Emergency! Yellow -> Red")
-		return redState
-	case powerOutage:
-		fmt.Println("Power outage")
-		return nil
-	default:
-		fmt.Printf("yellowState: Unhandled event: %v\n", event.Type)
-		return yellowState
-	}
+func yellowState(e Event) {
+	fmt.Println("Yellow -> Red")
 }

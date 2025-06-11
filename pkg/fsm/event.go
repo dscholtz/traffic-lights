@@ -1,11 +1,11 @@
 package fsm
 
-type eventType string
+type eventType int
 
 const (
-	timerElapsed eventType = "TIMER_ELAPSED"
-	emergency    eventType = "EMERGENCY"
-	powerOutage  eventType = "POWER_OUTAGE"
+	timerElapsed eventType = iota
+	emergency
+	powerOutage
 )
 
 type Event struct {
